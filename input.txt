@@ -1,0 +1,5 @@
+In the big data time, servitization becomes one of the important#development trends-of the IT world.
+More and more software resources are developed and existed in the format of services in Internet.
+These services from multi-domains and multi-networks are converged as a huge complicated service network or ecosystem, which can be called as Big Service.
+
+author:xhc@hit.edu.cn
