@@ -161,7 +161,7 @@ public class MAIN
 		//如果顶点word1到word2有相邻路径则两个单词之间没有bridgeword
 		if(this.edge_edge.contains(temp)==true)
 		{
-			return ("N0 bridge words from "+word1+" to "+word2+"!");
+			return ("No bridge words from "+word1+" to "+word2+"!");
 		}
 		//如果两个单词不相邻，查看这两个单词在不在顶点集中
 		else if(this.vertex_number.containsKey(word1) && this.vertex_number.containsKey(word2))
@@ -189,7 +189,8 @@ public class MAIN
 		}
 
 		//word1或者word2不在顶点集中
-		else if(this.vertex_number.containsKey(word1)==false || this.vertex_number.containsKey(word2)==false)
+		else if(this.vertex_number.containsKey(word1)==false 
+				|| this.vertex_number.containsKey(word2)==false)
 		{
 			bridgewords=bridgewords+"No "+word1+" or "+word2+ " in the graph!";
 			return bridgewords;
