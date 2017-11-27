@@ -16,6 +16,7 @@ import java.util.Vector;
  * @since  2017/9/05
  * @author 阿杜
  * @注：单词处理完以后必须按出现的循序放入对应的容器中;
+ * lab7
  */
 public class MAIN 
 {
@@ -161,7 +162,7 @@ public class MAIN
 		//如果顶点word1到word2有相邻路径则两个单词之间没有bridgeword
 		if(this.edge_edge.contains(temp)==true)
 		{
-			return ("No bridge words from "+word1+" to "+word2+"!");
+			return ("N0 bridge words from "+word1+" to "+word2+"!");
 		}
 		//如果两个单词不相邻，查看这两个单词在不在顶点集中
 		else if(this.vertex_number.containsKey(word1) && this.vertex_number.containsKey(word2))
@@ -189,8 +190,7 @@ public class MAIN
 		}
 
 		//word1或者word2不在顶点集中
-		else if(this.vertex_number.containsKey(word1)==false 
-				|| this.vertex_number.containsKey(word2)==false)
+		else if(this.vertex_number.containsKey(word1)==false || this.vertex_number.containsKey(word2)==false)
 		{
 			bridgewords=bridgewords+"No "+word1+" or "+word2+ " in the graph!";
 			return bridgewords;
@@ -275,7 +275,7 @@ public class MAIN
 		//先判断这两个单词是否在顶点集中
 		if(this.vertex_number.containsKey(word1)==false || this.vertex_number.containsKey(word2)==false)
 		{
-			return  "No "+word1+" or "+word2+ " in the graph!";
+			return  "No "+word1+" or "+word2+ "in the graph!";
 		}
 		
 		//String resultstring="";//返回值
@@ -661,7 +661,7 @@ public class MAIN
 			System.out.print("please input word 2 :");
 			String word2=cin.nextLine();	
 			String BridgeWords=obj1.queryBridgeWords(word1, word2);
-			System.out.println("@"+BridgeWords+"@");
+			System.out.println(BridgeWords);
 			
 	
 			//根据桥词形成新新文本
@@ -678,7 +678,7 @@ public class MAIN
 			System.out.print("please input word 2 :");
 			 word2=cin.nextLine();
 	  		 String minpass=obj1.calcShortestPath(word1, word2);
-			 System.out.println("两点间的最短路径是： "+"@"+minpass+"@");
+			 System.out.println("两点间的最短路径是： "+minpass);
 			 
 			 //一个点到所有点的最短路径
 			 System.out.println(" \n ******************* 一个单词到所有单词之间的最短路径:******************* ");
@@ -847,118 +847,6 @@ public class MAIN
 				 String style=tempstring+"[ color="+cl+"]"+";";
 				 this.gv_1.add(style); 
 			 }
-		}
-		
-		
-		
-		public  MAIN()
-		{
-
-			String str=new String();
-			
-					str="";
-					
-					String  StrFilename="input.txt";
-					try {
-						File file1=new File(StrFilename);
-						FileReader fr=new FileReader(file1);
-						BufferedReader br=new BufferedReader(fr);
-						
-						String temp=null;
-						int i=1;
-						while((temp=br.readLine()) != null)
-						{
-							if(i==1)
-							{
-								str=str+temp;//第一行前面不加空格
-							}
-							else {
-								str=str+" "+temp;//每读一行加一个空格
-							}
-							i++;
-						}
-						br.close();
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-
-			
-			String str1=str.replaceAll("[^a-zA-Z]+", " ");
-			String str2=str1.toLowerCase();
-			words_original=str2.split("[\\s]");
-			
-		
-			
-			/**	
-			 * 初始化edge_edge  ;  edge_weight
-			* 生成图   ,将每条边转换成字符串对加入map edge_weight 中；其中key是边，value是权值（边出现的次数）,计算每条边出现的个数
-			* 同时 将每一条"A -> B"边按出现的次数存放 vector edge_edge中(是为了将边按循序读出来)
-			*/
-			for(int i=0;i<words_original.length-1;i++)
-			{
-				String temp=words_original[i]+" -> "+words_original[i+1];
-				
-				//第一次加入时权值为1
-				if(edge_weight.containsKey(temp)==false)
-				{
-					edge_edge.add(temp);//将新的一对边放进vector edge_dege后面(若重复出现则按照第一次插入的为准
-					edge_weight.put(temp, 1);
-				}
-				
-				//如果已经有了边和权值，则权值加一
-				else {
-					int nutemp=edge_weight.get(temp);
-					nutemp+=1;
-					edge_weight.put(temp, nutemp);
-				}
-			}
-			
-			
-			/**	
-			 * 初始化 vertex_number   ; number_vertex
-			 * 从头到尾遍历原来的单词表，对每一个单词按照文本中出现的次数给予0....的值，若有重复出现的单词，则以第一次给予的值为准
-			 * 给每个定点赋给一个值，来表示每个定点在邻接矩阵的表示的数字
-			 */
-			int number=-1;//每条边对应的数字，从零开始
-			for(int i=0;i<words_original.length;i++)
-			{
-				//vertex_number，number_vertex每个key和value相反
-				if( vertex_number.containsKey(words_original[i])==false)
-				{
-					number+=1;
-					vertex_number.put(words_original[i], number);
-					number_vertex.put(number,words_original[i]);
-					edge.add(words_original[i]);
-				}
-			}
-			vertex=number_vertex.size();
-	
-			//邻接矩阵初始化，全部为max_weight
-			edge_matrix=new int[vertex][vertex];
-			for(int i=0;i<vertex;i++)
-			{
-				for(int j=0;j<vertex;j++)
-				{
-					edge_matrix[i][j]=max_weight;
-				}
-			}
-			
-			// 创建有向图,创建邻接矩阵；
-			for(int i=0;i<vertex;i++)
-			{
-				for(int j=0;j<vertex;j++)
-				{
-					String edgei=number_vertex.get(i);
-					String edgej=number_vertex.get(j);
-					//如果这两个边之间有路径
-					if(edge_weight.containsKey(edgei+" -> "+edgej))
-					{
-						int weight=edge_weight.get(edgei+" -> "+edgej);
-						edge_matrix[i][j]=weight;
-					}
-				}
-			}
-			
 		}
 }
 
