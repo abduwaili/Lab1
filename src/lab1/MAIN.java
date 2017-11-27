@@ -14,97 +14,97 @@ import java.util.Vector;
 
 /**
  * @since  2017/9/05
- * @author 阿杜
- * @注：单词处理完以后必须按出现的循序放入对应的容器中;
- * lab7
+ * @author 掳垄露脜
+ * @脳垄拢潞碌楼麓脢麓娄脌铆脥锚脪脭潞贸卤脴脨毛掳麓鲁枚脧脰碌脛脩颅脨貌路脜脠毛露脭脫娄碌脛脠脻脝梅脰脨;
+ * lab7鎻愪氦
  */
 public class MAIN 
 {
 	
 	 /**
-	 * @变量名：string[] word_orginal;
-	 * @作用：存放读取文本中的单词
-	 * 详解：
-	 *	      读取文本后，只留下文本中的英文单词并全部转换小写，在将其按出现的循序拆分成单词，依次放入数组words_original中，
-	 *	      但是并不对重复出现的单词进行处理，即单词"a"出现了三次，那么就按照出现的循序存储三次，所以words_original的长度
-	 *	  等于文本单词的综合
+	 * @卤盲脕驴脙没拢潞string[] word_orginal;
+	 * @脳梅脫脙拢潞麓忙路脜露脕脠隆脦脛卤戮脰脨碌脛碌楼麓脢
+	 * 脧锚陆芒拢潞
+	 *	      露脕脠隆脦脛卤戮潞贸拢卢脰禄脕么脧脗脦脛卤戮脰脨碌脛脫垄脦脛碌楼麓脢虏垄脠芦虏驴脳陋禄禄脨隆脨麓拢卢脭脷陆芦脝盲掳麓鲁枚脧脰碌脛脩颅脨貌虏冒路脰鲁脡碌楼麓脢拢卢脪脌麓脦路脜脠毛脢媒脳茅words_original脰脨拢卢
+	 *	      碌芦脢脟虏垄虏禄露脭脰脴赂麓鲁枚脧脰碌脛碌楼麓脢陆酶脨脨麓娄脌铆拢卢录麓碌楼麓脢"a"鲁枚脧脰脕脣脠媒麓脦拢卢脛脟脙麓戮脥掳麓脮脮鲁枚脧脰碌脛脩颅脨貌麓忙麓垄脠媒麓脦拢卢脣霉脪脭words_original碌脛鲁陇露脠
+	 *	  碌脠脫脷脦脛卤戮碌楼麓脢碌脛脳脹潞脧
 	 */	
-	public String[] words_original;	//初始的所有单词数组,按读进来的数据中的次序依次将文章拆分成单词
+	public String[] words_original;	//鲁玫脢录碌脛脣霉脫脨碌楼麓脢脢媒脳茅,掳麓露脕陆酶脌麓碌脛脢媒戮脻脰脨碌脛麓脦脨貌脪脌麓脦陆芦脦脛脮脗虏冒路脰鲁脡碌楼麓脢
 	
-	public Vector<String> edge=new Vector<>();//顶点数组
+	public Vector<String> edge=new Vector<>();//露楼碌茫脢媒脳茅
 	
 	/**
-	 * @变量名： int vertex;
-	 * @作用： 顶点个数
-	 * 详解：
-	 * 	  其长度等于文本中单词的种类个数；
-	 *   以下容器：edge_weight，edge_edge，vertex_number，number_vertex，edge_matrix的长度全部等于vextex
+	 * @卤盲脕驴脙没拢潞 int vertex;
+	 * @脳梅脫脙拢潞 露楼碌茫赂枚脢媒
+	 * 脧锚陆芒拢潞
+	 * 	  脝盲鲁陇露脠碌脠脫脷脦脛卤戮脰脨碌楼麓脢碌脛脰脰脌脿赂枚脢媒拢禄
+	 *   脪脭脧脗脠脻脝梅拢潞edge_weight拢卢edge_edge拢卢vertex_number拢卢number_vertex拢卢edge_matrix碌脛鲁陇露脠脠芦虏驴碌脠脫脷vextex
 	 */
 	public int vertex;
 	
 	
 	/**
-	 * @变量名：HashMap edge_weight
-	 * @作用：    边和权重键值对
-	 * 详解：
-	 * 	  如果单词A到B有路径，那么将 key= "A -> B",value=权值（即"A -> B"出现的次数）;
-	 *   可以按照某个边"A - >B"取出其权值
+	 * @卤盲脕驴脙没拢潞HashMap edge_weight
+	 * @脳梅脫脙拢潞    卤脽潞脥脠篓脰脴录眉脰碌露脭
+	 * 脧锚陆芒拢潞
+	 * 	  脠莽鹿没碌楼麓脢A碌陆B脫脨脗路戮露拢卢脛脟脙麓陆芦 key= "A -> B",value=脠篓脰碌拢篓录麓"A -> B"鲁枚脧脰碌脛麓脦脢媒拢漏;
+	 *   驴脡脪脭掳麓脮脮脛鲁赂枚卤脽"A - >B"脠隆鲁枚脝盲脠篓脰碌
 	 */
 	public Map<String, Integer> edge_weight=new HashMap<String,Integer>();
 	
 	
-		//将所有的边对按顺序保存下来；如：边A,B变成 "A -> B"放入edge_edge中(可以按循序读出来)
+		//陆芦脣霉脫脨碌脛卤脽露脭掳麓脣鲁脨貌卤拢麓忙脧脗脌麓拢禄脠莽拢潞卤脽A,B卤盲鲁脡 "A -> B"路脜脠毛edge_edge脰脨(驴脡脪脭掳麓脩颅脨貌露脕鲁枚脌麓)
 	/**
-	 * @变量名：Vector edge_edge
-	 * @作用：    存放边
-	 * 详解：      
-	 * 	  将所有边按照在文本中出现的次序放入edge_edge中，若某条边 "A -> B"先后出现两次，那么起出现位置以第一次出现的为准
+	 * @卤盲脕驴脙没拢潞Vector edge_edge
+	 * @脳梅脫脙拢潞    麓忙路脜卤脽
+	 * 脧锚陆芒拢潞      
+	 * 	  陆芦脣霉脫脨卤脽掳麓脮脮脭脷脦脛卤戮脰脨鲁枚脧脰碌脛麓脦脨貌路脜脠毛edge_edge脰脨拢卢脠么脛鲁脤玫卤脽 "A -> B"脧脠潞贸鲁枚脧脰脕陆麓脦拢卢脛脟脙麓脝冒鲁枚脧脰脦禄脰脙脪脭碌脷脪禄麓脦鲁枚脧脰碌脛脦陋脳录
 	 */
 	public Vector<String> edge_edge=new Vector<String>();
 	
 
 	/**
-	 * @变量名：Map vertex_number
-	 * @作用： 根据顶点名可取出起对应的数子，这个数字每个顶点是唯一的
-	 * 详解：
-	 * 	  对文本中的每一个顶点根据起出现的次序对应一个数字值，因为邻接矩阵中用数字来表示边；这个数字是按照顶点在文本中出现的次序从零递增的；
-	 *   比如顶点A和B有路径，顶点A对应唯一一个数字i，顶点B对应唯一一个数字j,那么邻接矩阵edge_matrix[i][j]等于"A -> B"权值;
-	 *   number_vertix可按照数字读取对应单词；vertex_number可按照单词读出对应的数字,两者可以对照使用，是的临界矩阵和顶点关系更灵活
+	 * @卤盲脕驴脙没拢潞Map vertex_number
+	 * @脳梅脫脙拢潞 赂霉戮脻露楼碌茫脙没驴脡脠隆鲁枚脝冒露脭脫娄碌脛脢媒脳脫拢卢脮芒赂枚脢媒脳脰脙驴赂枚露楼碌茫脢脟脦篓脪禄碌脛
+	 * 脧锚陆芒拢潞
+	 * 	  露脭脦脛卤戮脰脨碌脛脙驴脪禄赂枚露楼碌茫赂霉戮脻脝冒鲁枚脧脰碌脛麓脦脨貌露脭脫娄脪禄赂枚脢媒脳脰脰碌拢卢脪貌脦陋脕脷陆脫戮脴脮贸脰脨脫脙脢媒脳脰脌麓卤铆脢戮卤脽拢禄脮芒赂枚脢媒脳脰脢脟掳麓脮脮露楼碌茫脭脷脦脛卤戮脰脨鲁枚脧脰碌脛麓脦脨貌麓脫脕茫碌脻脭枚碌脛拢禄
+	 *   卤脠脠莽露楼碌茫A潞脥B脫脨脗路戮露拢卢露楼碌茫A露脭脫娄脦篓脪禄脪禄赂枚脢媒脳脰i拢卢露楼碌茫B露脭脫娄脦篓脪禄脪禄赂枚脢媒脳脰j,脛脟脙麓脕脷陆脫戮脴脮贸edge_matrix[i][j]碌脠脫脷"A -> B"脠篓脰碌;
+	 *   number_vertix驴脡掳麓脮脮脢媒脳脰露脕脠隆露脭脫娄碌楼麓脢拢禄vertex_number驴脡掳麓脮脮碌楼麓脢露脕鲁枚露脭脫娄碌脛脢媒脳脰,脕陆脮脽驴脡脪脭露脭脮脮脢鹿脫脙拢卢脢脟碌脛脕脵陆莽戮脴脮贸潞脥露楼碌茫鹿脴脧碌赂眉脕茅禄卯
 	 * 
 	 */
 	public Map<String, Integer> vertex_number=new HashMap<String,Integer>();
 	
 	
 	/**
-	 * @变量名：Map number_vertex
-	 * @作用： 根据某个数字值，可去取出其对应的顶点名称（与vertex_number正好相反）
-	 * 详解：
-	 * 	   在vertex_number中已经给每个顶点对照一个数字，即可用顶点名称取出对应的数字，那么number_vextex可以根据顶点编号取出顶点名称
-	 *   比如edge_matrix[i][j]表示第i个顶点到第j个顶点的路径，那么此时只要找出数字i,j对应的顶点名称即可知道那两条边存在路径
+	 * @卤盲脕驴脙没拢潞Map number_vertex
+	 * @脳梅脫脙拢潞 赂霉戮脻脛鲁赂枚脢媒脳脰脰碌拢卢驴脡脠楼脠隆鲁枚脝盲露脭脫娄碌脛露楼碌茫脙没鲁脝拢篓脫毛vertex_number脮媒潞脙脧脿路麓拢漏
+	 * 脧锚陆芒拢潞
+	 * 	   脭脷vertex_number脰脨脪脩戮颅赂酶脙驴赂枚露楼碌茫露脭脮脮脪禄赂枚脢媒脳脰拢卢录麓驴脡脫脙露楼碌茫脙没鲁脝脠隆鲁枚露脭脫娄碌脛脢媒脳脰拢卢脛脟脙麓number_vextex驴脡脪脭赂霉戮脻露楼碌茫卤脿潞脜脠隆鲁枚露楼碌茫脙没鲁脝
+	 *   卤脠脠莽edge_matrix[i][j]卤铆脢戮碌脷i赂枚露楼碌茫碌陆碌脷j赂枚露楼碌茫碌脛脗路戮露拢卢脛脟脙麓麓脣脢卤脰禄脪陋脮脪鲁枚脢媒脳脰i,j露脭脫娄碌脛露楼碌茫脙没鲁脝录麓驴脡脰陋碌脌脛脟脕陆脤玫卤脽麓忙脭脷脗路戮露
 	 */
 	public Map<Integer,String> number_vertex=new HashMap<Integer,String>();
 	
 	/**
 	 * @int[][] edge_matrix;
-	 * @作用： 有向图邻接矩阵
-	 * @初始值：10000
-	 * 详解：
-	 * 	      因为在vertex_number和number_vertex中已经将每个顶点与唯一的编号对应，那么可用邻接矩阵表示所有编号之间的边关系；
-	 *    （因为编号和顶点名称相互对应，所有可知道每个顶点之间的路径关系）
+	 * @脳梅脫脙拢潞 脫脨脧貌脥录脕脷陆脫戮脴脮贸
+	 * @鲁玫脢录脰碌拢潞10000
+	 * 脧锚陆芒拢潞
+	 * 	      脪貌脦陋脭脷vertex_number潞脥number_vertex脰脨脪脩戮颅陆芦脙驴赂枚露楼碌茫脫毛脦篓脪禄碌脛卤脿潞脜露脭脫娄拢卢脛脟脙麓驴脡脫脙脕脷陆脫戮脴脮贸卤铆脢戮脣霉脫脨卤脿潞脜脰庐录盲碌脛卤脽鹿脴脧碌拢禄
+	 *    拢篓脪貌脦陋卤脿潞脜潞脥露楼碌茫脙没鲁脝脧脿禄楼露脭脫娄拢卢脣霉脫脨驴脡脰陋碌脌脙驴赂枚露楼碌茫脰庐录盲碌脛脗路戮露鹿脴脧碌拢漏
 	 *    
 	 */
 	public int [][] edge_matrix=null;
 	
-	//初始化邻接矩阵的值，如果权值为10000，则没有路径
+	//鲁玫脢录禄炉脕脷陆脫戮脴脮贸碌脛脰碌拢卢脠莽鹿没脠篓脰碌脦陋10000拢卢脭貌脙禄脫脨脗路戮露
 	int max_weight=100000;
 	
 	
-	//一个点到所有点的路径
+	//脪禄赂枚碌茫碌陆脣霉脫脨碌茫碌脛脗路戮露
 	public GraphViz gv_1 = new GraphViz();
 	
 	
 	/*************************************************************************
-	 * 展示有向图
+	 * 脮鹿脢戮脫脨脧貌脥录
 	 *************************************************************************/
 	//public void showDirectedGraph(Vector<String> edge_vec
 	public void showDirectedGraph()
@@ -113,25 +113,25 @@ public class MAIN
 	     gv.addln(gv.start_graph());
 	     
 	     /**
-	      * 按循序遍历边容器，依次取出每条边和此边的权重，权重作为路径的label;
+	      * 掳麓脩颅脨貌卤茅脌煤卤脽脠脻脝梅拢卢脪脌麓脦脠隆鲁枚脙驴脤玫卤脽潞脥麓脣卤脽碌脛脠篓脰脴拢卢脠篓脰脴脳梅脦陋脗路戮露碌脛label;
 	      */
 		for(int i=0;i<this.edge_edge.size();i++)
 		{
 
-			String add_edge=this.edge_edge.elementAt(i);//一对边
-			String strweight=this.edge_weight.get(add_edge).toString();//边的权值
+			String add_edge=this.edge_edge.elementAt(i);//脪禄露脭卤脽
+			String strweight=this.edge_weight.get(add_edge).toString();//卤脽碌脛脠篓脰碌
 			String style=add_edge+"[ label="+strweight+"]"+";";
 			gv.add(style);
 		}
 		
-		gv.addln(gv.end_graph()); //将所有边传给dot文件
+		gv.addln(gv.end_graph()); //陆芦脣霉脫脨卤脽麓芦赂酶dot脦脛录镁
 	    String type = "jpg";
 	    File out = new File("out." + type);   
 	    
 	    /**
-	     * gv.getDotSource()--将图片转换成字符串格式
-	     * gv.getGraph( gv.getDotSource(), type ) --将字符串转换成字节数组
-	     * writeGraphToFile --将图片输出到文件out中
+	     * gv.getDotSource()--陆芦脥录脝卢脳陋禄禄鲁脡脳脰路没麓庐赂帽脢陆
+	     * gv.getGraph( gv.getDotSource(), type ) --陆芦脳脰路没麓庐脳陋禄禄鲁脡脳脰陆脷脢媒脳茅
+	     * writeGraphToFile --陆芦脥录脝卢脢盲鲁枚碌陆脦脛录镁out脰脨
 	     */
 	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
 	    
@@ -145,26 +145,26 @@ public class MAIN
 	
 	
 	/*************************************************************************
-	 * 查询桥词
+	 * 虏茅脩炉脟脜麓脢
 	 * @param word1
 	 * @param word2
-	 * @return 如果有一个或多个bridgewords则返回bridgewords;
-	 * 		      如果某个单词不在图中则返回："No "+word1+" or "+word2+ " in the graph!";
-	 * 		    如果两个单词之间有路径，或者没有bridgeword返回："N0 bridge words from "+word1+" to "+word2+"!"
+	 * @return 脠莽鹿没脫脨脪禄赂枚禄貌露脿赂枚bridgewords脭貌路碌禄脴bridgewords;
+	 * 		      脠莽鹿没脛鲁赂枚碌楼麓脢虏禄脭脷脥录脰脨脭貌路碌禄脴拢潞"No "+word1+" or "+word2+ " in the graph!";
+	 * 		    脠莽鹿没脕陆赂枚碌楼麓脢脰庐录盲脫脨脗路戮露拢卢禄貌脮脽脙禄脫脨bridgeword路碌禄脴拢潞"N0 bridge words from "+word1+" to "+word2+"!"
 	 **************************************************************************/
 	public String queryBridgeWords(String word1, String word2)
 	{
 		
-		String bridgewords="";	//返回的字符串，记录bridgewords
+		String bridgewords="";	//路碌禄脴碌脛脳脰路没麓庐拢卢录脟脗录bridgewords
 		
-		String temp=word1+" -> "+word2; //连个单词组成的边名称
+		String temp=word1+" -> "+word2; //脕卢赂枚碌楼麓脢脳茅鲁脡碌脛卤脽脙没鲁脝
 		
-		//如果顶点word1到word2有相邻路径则两个单词之间没有bridgeword
+		//脠莽鹿没露楼碌茫word1碌陆word2脫脨脧脿脕脷脗路戮露脭貌脕陆赂枚碌楼麓脢脰庐录盲脙禄脫脨bridgeword
 		if(this.edge_edge.contains(temp)==true)
 		{
 			return ("N0 bridge words from "+word1+" to "+word2+"!");
 		}
-		//如果两个单词不相邻，查看这两个单词在不在顶点集中
+		//脠莽鹿没脕陆赂枚碌楼麓脢虏禄脧脿脕脷拢卢虏茅驴麓脮芒脕陆赂枚碌楼麓脢脭脷虏禄脭脷露楼碌茫录炉脰脨
 		else if(this.vertex_number.containsKey(word1) && this.vertex_number.containsKey(word2))
 		{
 			int wordnum1=this.vertex_number.get(word1);
@@ -180,22 +180,22 @@ public class MAIN
 					}
 				}
 			}
-			//如果一个bridgeword都没有
+			//脠莽鹿没脪禄赂枚bridgeword露录脙禄脫脨
 			if(bridgewords=="")
 			{
 				return ("No bridge words from "+word1+" to "+word2+"!");
 			}
-			//如果找到了
+			//脠莽鹿没脮脪碌陆脕脣
 			bridgewords="The bridge words from "+word1+" to "+word2+" are: "+bridgewords;
 		}
 
-		//word1或者word2不在顶点集中
+		//word1禄貌脮脽word2虏禄脭脷露楼碌茫录炉脰脨
 		else if(this.vertex_number.containsKey(word1)==false || this.vertex_number.containsKey(word2)==false)
 		{
 			bridgewords=bridgewords+"No "+word1+" or "+word2+ " in the graph!";
 			return bridgewords;
 		}
-		//若单词在文本中，但是没有bridge word或者两个单词之间有路径
+		//脠么碌楼麓脢脭脷脦脛卤戮脰脨拢卢碌芦脢脟脙禄脫脨bridge word禄貌脮脽脕陆赂枚碌楼麓脢脰庐录盲脫脨脗路戮露
 		else {
 			return ("No bridge words from "+word1+" to "+word2+"!");
 		}
@@ -205,13 +205,13 @@ public class MAIN
 	
 	
 	/**************************************************************************
-	 * 根据桥词形成新的文本
+	 * 赂霉戮脻脟脜麓脢脨脦鲁脡脨脗碌脛脦脛卤戮
 	 * @param inputText
 	 * @return
 	 ************************************************************************/
 	public String generateNewText(String inputText)
 	{
-		//将inputText按照空格拆分拆分成单词，依次放入字符串数组中,inputText本身并不变
+		//陆芦inputText掳麓脮脮驴脮赂帽虏冒路脰虏冒路脰鲁脡碌楼麓脢拢卢脪脌麓脦路脜脠毛脳脰路没麓庐脢媒脳茅脰脨,inputText卤戮脡铆虏垄虏禄卤盲
 		String strtemp=inputText.replaceAll("[^a-zA-Z]+", " ").toLowerCase();
 		String[] inputWords=strtemp.split("[\\s]");
 	    String result="";
@@ -219,11 +219,11 @@ public class MAIN
 		for(int i=0;i<inputWords.length-1;i++)
 		{
 			//vector.add(inputWords[i]);
-			result=result+inputWords[i]+" ";//加入输入文本的第一个单词
-			Vector<String> vectemp=new Vector<>();//存放所有桥词，后面随机产生下表选取其中一个
+			result=result+inputWords[i]+" ";//录脫脠毛脢盲脠毛脦脛卤戮碌脛碌脷脪禄赂枚碌楼麓脢
+			Vector<String> vectemp=new Vector<>();//麓忙路脜脣霉脫脨脟脜麓脢拢卢潞贸脙忙脣忙禄煤虏煤脡煤脧脗卤铆脩隆脠隆脝盲脰脨脪禄赂枚
 			
 
-			//如果两个单词都在原来的文本中
+			//脠莽鹿没脕陆赂枚碌楼麓脢露录脭脷脭颅脌麓碌脛脦脛卤戮脰脨
 			if(this.vertex_number.containsKey(inputWords[i]) && this.vertex_number.containsKey(inputWords[i+1]))
 			{
 				int wordnum1=this.vertex_number.get(inputWords[i]);
@@ -234,7 +234,7 @@ public class MAIN
 					{
 						if(this.edge_matrix[j][wordnum2]!=this.max_weight)
 						{
-							if(this.edge_matrix[wordnum1][wordnum2]==this.max_weight)//两个单词之间不能有路径
+							if(this.edge_matrix[wordnum1][wordnum2]==this.max_weight)//脕陆赂枚碌楼麓脢脰庐录盲虏禄脛脺脫脨脗路戮露
 							{
 								vectemp.add(this.number_vertex.get(j));
 							}
@@ -243,16 +243,16 @@ public class MAIN
 				}
 			}
 			
-			//如果vectemp不空，即里面有bridge word,从其中随机选取一个
+			//脠莽鹿没vectemp虏禄驴脮拢卢录麓脌茂脙忙脫脨bridge word,麓脫脝盲脰脨脣忙禄煤脩隆脠隆脪禄赂枚
 			if(vectemp.isEmpty()==false)
 			{
 				Random r=new Random();
-				int index=r.nextInt(vectemp.size());//产生vectemp长度之内的随机数
+				int index=r.nextInt(vectemp.size());//虏煤脡煤vectemp鲁陇露脠脰庐脛脷碌脛脣忙禄煤脢媒
 				result=result+vectemp.get(index)+" ";
 				vectemp.clear();
 			}
 		}
-		result=result+inputWords[inputWords.length-1];//加上输入文本最后一个单词
+		result=result+inputWords[inputWords.length-1];//录脫脡脧脢盲脠毛脦脛卤戮脳卯潞贸脪禄赂枚碌楼麓脢
 		return result;
 	}
 	
@@ -263,24 +263,24 @@ public class MAIN
 	/************************************************************************
 	 * @param word1
 	 * @param word2
-	 * @return 两个点之间的最短路径
+	 * @return 脕陆赂枚碌茫脰庐录盲碌脛脳卯露脤脗路戮露
 	 ***********************************************************************/
 	public String calcShortestPath(String word1, String word2)
 	{
-		Vector<String> min_pass_edge=new Vector<>();//记录两点间的路径（包括这俩个点）
-		String returnstring="";//记录亮点间的路径（包括亮点）
-		//记录两个顶点之间的最短路径所经过的边和对应的权值
-		Map<String, Integer> min_edge_weigth=new HashMap<String, Integer>();//亮点最短路径经过的边和权值
+		Vector<String> min_pass_edge=new Vector<>();//录脟脗录脕陆碌茫录盲碌脛脗路戮露拢篓掳眉脌篓脮芒脕漏赂枚碌茫拢漏
+		String returnstring="";//录脟脗录脕脕碌茫录盲碌脛脗路戮露拢篓掳眉脌篓脕脕碌茫拢漏
+		//录脟脗录脕陆赂枚露楼碌茫脰庐录盲碌脛脳卯露脤脗路戮露脣霉戮颅鹿媒碌脛卤脽潞脥露脭脫娄碌脛脠篓脰碌
+		Map<String, Integer> min_edge_weigth=new HashMap<String, Integer>();//脕脕碌茫脳卯露脤脗路戮露戮颅鹿媒碌脛卤脽潞脥脠篓脰碌
 		
-		//先判断这两个单词是否在顶点集中
+		//脧脠脜脨露脧脮芒脕陆赂枚碌楼麓脢脢脟路帽脭脷露楼碌茫录炉脰脨
 		if(this.vertex_number.containsKey(word1)==false || this.vertex_number.containsKey(word2)==false)
 		{
 			return  "No "+word1+" or "+word2+ "in the graph!";
 		}
 		
-		//String resultstring="";//返回值
+		//String resultstring="";//路碌禄脴脰碌
 		int[][] D=new int[this.vertex][this.vertex];
-		int[][] P=new int[this.vertex][this.vertex];//表示编号为i,j边之间的最短路径
+		int[][] P=new int[this.vertex][this.vertex];//卤铆脢戮卤脿潞脜脦陋i,j卤脽脰庐录盲碌脛脳卯露脤脗路戮露
 		for(int i=0;i<this.vertex;i++)
 		{
 			for(int j=0;j<this.vertex;j++)
@@ -315,50 +315,50 @@ public class MAIN
 		min_pass_edge.add(word2);
 		
 		
-		//如果两个单词不可达
+		//脠莽鹿没脕陆赂枚碌楼麓脢虏禄驴脡麓茂
 		if(min_pass_edge.size()==2 && min_pass_edge.get(0)==word1&&min_pass_edge.get(1)==word2&&this.edge_edge.contains(word1+" -> "+word2)==false)
 		{
 			return "No pass from "+word1+" to "+word2+ " !";
 		}
 		
 		
-		//将路径上的顶点加入returnresult中
+		//陆芦脗路戮露脡脧碌脛露楼碌茫录脫脠毛returnresult脰脨
 		for(int k=0;k<min_pass_edge.size()-1;k++)
 		{
 			returnstring=returnstring+min_pass_edge.get(k)+" -> ";
 		}
-		returnstring=returnstring+min_pass_edge.get(min_pass_edge.size()-1)+" -> ";//加入最后一个单词
+		returnstring=returnstring+min_pass_edge.get(min_pass_edge.size()-1)+" -> ";//录脫脠毛脳卯潞贸脪禄赂枚碌楼麓脢
 		 
-		//展示最短路径图
+		//脮鹿脢戮脳卯露脤脗路戮露脥录
 		 
-		 //将亮点间的最短路径经过的边和权值加入min_edge_weight中,
+		 //陆芦脕脕碌茫录盲碌脛脳卯露脤脗路戮露戮颅鹿媒碌脛卤脽潞脥脠篓脰碌录脫脠毛min_edge_weight脰脨,
 		 for(int k=0;k<min_pass_edge.size()-1;k++)
 		 {
 			 String frist=min_pass_edge.get(k);
 			 String next=min_pass_edge.get(k+1);
-			 String tempstring=frist+" -> "+next;//边
-			 int fristnum=this.vertex_number.get(frist);	//两个顶点的编号
+			 String tempstring=frist+" -> "+next;//卤脽
+			 int fristnum=this.vertex_number.get(frist);	//脕陆赂枚露楼碌茫碌脛卤脿潞脜
 			 int nextnumm=this.vertex_number.get(next);
-			 int tempweigt=this.edge_matrix[fristnum][nextnumm];//权值
+			 int tempweigt=this.edge_matrix[fristnum][nextnumm];//脠篓脰碌
 			 min_edge_weigth.put(tempstring, tempweigt);
 		 }
 		 
-		 //	绘制边的时候，如果边在min_edge_weight中用凸显的颜色标识否则用默认颜色
+		 //	禄忙脰脝卤脽碌脛脢卤潞貌拢卢脠莽鹿没卤脽脭脷min_edge_weight脰脨脫脙脥鹿脧脭碌脛脩脮脡芦卤锚脢露路帽脭貌脫脙脛卢脠脧脩脮脡芦
 		GraphViz gv = new GraphViz();
 	    gv.addln(gv.start_graph());	
 	    for(int k=0;k<this.edge_edge.size();k++)
 		{			
-			String add_edge=this.edge_edge.elementAt(k);//一对边
-			String strweight=this.edge_weight.get(add_edge).toString();//边的权值
+			String add_edge=this.edge_edge.elementAt(k);//脪禄露脭卤脽
+			String strweight=this.edge_weight.get(add_edge).toString();//卤脽碌脛脠篓脰碌
 			String style=null;	
 				
-			//如果边add_edge在min_edge_weight中,则颜色为红色
+			//脠莽鹿没卤脽add_edge脭脷min_edge_weight脰脨,脭貌脩脮脡芦脦陋潞矛脡芦
 			if(min_edge_weigth.containsKey(add_edge))
 			{
 				 style=add_edge+"[ color=red,label="+strweight+"]"+";";
 			}
 		
-			//否则为默认
+			//路帽脭貌脦陋脛卢脠脧
 			else {
 				style=add_edge+"[ label="+strweight+"]"+";";
 			}				
@@ -385,34 +385,34 @@ public class MAIN
 	
 	
 	
-	/**随机游走*******************************************************************************
-	 *@author 阿杜
-	 *@流程：首先程序随机生成一个顶点个数范围之内的数字，以此数字为起点。如新第一个起点是A则选出与A相邻的所有顶点放入一个vectemp中，
-	 *		再从其中随机选出一个顶点B，并形成字符串"A - >B"放入一个vecresult中，如果vecresult中已经有此边，则结束。或者
-	 *		选到一个新的顶点不存在出边则结束，将前面的所有出现的顶点降入resultstring中并返回！
-	 *		每次选出下一条边，则此成为strat_number，重复上面的操作
+	/**脣忙禄煤脫脦脳脽*******************************************************************************
+	 *@author 掳垄露脜
+	 *@脕梅鲁脤拢潞脢脳脧脠鲁脤脨貌脣忙禄煤脡煤鲁脡脪禄赂枚露楼碌茫赂枚脢媒路露脦搂脰庐脛脷碌脛脢媒脳脰拢卢脪脭麓脣脢媒脳脰脦陋脝冒碌茫隆拢脠莽脨脗碌脷脪禄赂枚脝冒碌茫脢脟A脭貌脩隆鲁枚脫毛A脧脿脕脷碌脛脣霉脫脨露楼碌茫路脜脠毛脪禄赂枚vectemp脰脨拢卢
+	 *		脭脵麓脫脝盲脰脨脣忙禄煤脩隆鲁枚脪禄赂枚露楼碌茫B拢卢虏垄脨脦鲁脡脳脰路没麓庐"A - >B"路脜脠毛脪禄赂枚vecresult脰脨拢卢脠莽鹿没vecresult脰脨脪脩戮颅脫脨麓脣卤脽拢卢脭貌陆谩脢酶隆拢禄貌脮脽
+	 *		脩隆碌陆脪禄赂枚脨脗碌脛露楼碌茫虏禄麓忙脭脷鲁枚卤脽脭貌陆谩脢酶拢卢陆芦脟掳脙忙碌脛脣霉脫脨鲁枚脧脰碌脛露楼碌茫陆碌脠毛resultstring脰脨虏垄路碌禄脴拢隆
+	 *		脙驴麓脦脩隆鲁枚脧脗脪禄脤玫卤脽拢卢脭貌麓脣鲁脡脦陋strat_number拢卢脰脴赂麓脡脧脙忙碌脛虏脵脳梅
 	 * 
 	 *******************************************************************************************/
 	public String randomWalk()
 	{
-		//随机游走的路径
+		//脣忙禄煤脫脦脳脽碌脛脗路戮露
 		String strresult="";
 		
-		//记录出现过的边，如果重复出现则结束
+		//录脟脗录鲁枚脧脰鹿媒碌脛卤脽拢卢脠莽鹿没脰脴赂麓鲁枚脧脰脭貌陆谩脢酶
 		Vector<String> vecresult=new Vector<>();
 		
-		//产生顶点个数vertex范围之内的一个数字,将该数字对应的顶点作为起始位置
+		//虏煤脡煤露楼碌茫赂枚脢媒vertex路露脦搂脰庐脛脷碌脛脪禄赂枚脢媒脳脰,陆芦赂脙脢媒脳脰露脭脫娄碌脛露楼碌茫脳梅脦陋脝冒脢录脦禄脰脙
 		Random r=new Random();
 		
-		//第一个顶点对应的编号
+		//碌脷脪禄赂枚露楼碌茫露脭脫娄碌脛卤脿潞脜
 		int frist_number=r.nextInt(vertex);
 		
-		//String strat_edge=this.number_vertex.get(frist_number);//其实顶点
-		//将第一个边加入strresult中
+		//String strat_edge=this.number_vertex.get(frist_number);//脝盲脢碌露楼碌茫
+		//陆芦碌脷脪禄赂枚卤脽录脫脠毛strresult脰脨
 		strresult=strresult+this.number_vertex.get(frist_number)+" ";
 		
 		Scanner in=new Scanner(System.in);
-		System.out.print("是否继续(Y/N): ");
+		System.out.print("脢脟路帽录脤脨酶(Y/N): ");
 		String choose1=in.next();
 		if(choose1.equals("N") ||choose1.equals("n"))
 		{
@@ -430,38 +430,38 @@ public class MAIN
 			Vector<String> vectemp=new Vector<>();
 		    for(int j=0;j<vertex;j++)
 		    {
-		    	//将于frist_number有路径的顶点名称放入vectemp中
+		    	//陆芦脫脷frist_number脫脨脗路戮露碌脛露楼碌茫脙没鲁脝路脜脠毛vectemp脰脨
 		    	if(edge_matrix[frist_number][j]!=this.max_weight)
 		    	{	
 		    		vectemp.add(this.number_vertex.get(j));
 		    	}
 		    }
 		    
-		    //如果vectemp空，即frist_number顶点没有出路，则结束
+		    //脠莽鹿没vectemp驴脮拢卢录麓frist_number露楼碌茫脙禄脫脨鲁枚脗路拢卢脭貌陆谩脢酶
 		    if(vectemp.isEmpty())
 		    {
 		    	break;
 		    }
-		    //vectemp里面是遇上一个边frist_number有路径的所有顶点
-		    if(vectemp.isEmpty()==false)//如frist_number对应的边有下一条边
+		    //vectemp脌茂脙忙脢脟脫枚脡脧脪禄赂枚卤脽frist_number脫脨脗路戮露碌脛脣霉脫脨露楼碌茫
+		    if(vectemp.isEmpty()==false)//脠莽frist_number露脭脫娄碌脛卤脽脫脨脧脗脪禄脤玫卤脽
 		    {
-		    	//从vectemp中随选出一个顶点
+		    	//麓脫vectemp脰脨脣忙脩隆鲁枚脪禄赂枚露楼碌茫
 		    	Random r1=new Random();
 				int next_number=r1.nextInt(vectemp.size());
-				//如果边 "strat_number -> next "没出现过则继续，否则结束并返回结果,从vectemp中取出随即边vectemp.get(next_number)
+				//脠莽鹿没卤脽 "strat_number -> next "脙禄鲁枚脧脰鹿媒脭貌录脤脨酶拢卢路帽脭貌陆谩脢酶虏垄路碌禄脴陆谩鹿没,麓脫vectemp脰脨脠隆鲁枚脣忙录麓卤脽vectemp.get(next_number)
 				String temp=this.number_vertex.get(frist_number)+" -> "+vectemp.get(next_number);
 				
-				//如果改变是第一条边，则结束
+				//脠莽鹿没赂脛卤盲脢脟碌脷脪禄脤玫卤脽拢卢脭貌陆谩脢酶
 				//if(vecresult.contains(temp)==false)
 				
 				if(vecresult.isEmpty()==true)
 				{
 					vecresult.add(temp);
 					strresult=strresult+vectemp.get(next_number)+" ";
-					//next_number对应的边成为新的起始点frist_number，
+					//next_number露脭脫娄碌脛卤脽鲁脡脦陋脨脗碌脛脝冒脢录碌茫frist_number拢卢
 					frist_number=this.vertex_number.get(vectemp.get(next_number));
 					
-					 System.out.print("是否继续(Y/N): ");
+					 System.out.print("脢脟路帽录脤脨酶(Y/N): ");
 					 String choose=in.next();
 					if(choose.equals("Y")||choose.equals("y"))
 					{
@@ -474,14 +474,14 @@ public class MAIN
 					
 				}
 				
-				//若该边temp在vecresutl出现过则结束
+				//脠么赂脙卤脽temp脭脷vecresutl鲁枚脧脰鹿媒脭貌陆谩脢酶
 			
 				 if(vecresult.get(0).equals(temp)==false)
 				{
-					//没有出现过则将，这对边temp放入vecresult中
+					//脙禄脫脨鲁枚脧脰鹿媒脭貌陆芦拢卢脮芒露脭卤脽temp路脜脠毛vecresult脰脨
 					vecresult.add(temp);
 					strresult=strresult+vectemp.get(next_number)+" ";
-					//next_number对应的边成为新的起始点frist_number，
+					//next_number露脭脫娄碌脛卤脽鲁脡脦陋脨脗碌脛脝冒脢录碌茫frist_number拢卢
 					frist_number=this.vertex_number.get(vectemp.get(next_number));
 				}	
 				 else 
@@ -491,7 +491,7 @@ public class MAIN
 				}
 		    }
 		    
-		    System.out.print("是否继续(Y/N): ");
+		    System.out.print("脢脟路帽录脤脨酶(Y/N): ");
 			String choose=in.next();
 			if(choose.equals("Y")||choose.equals("y"))
 			{
@@ -513,7 +513,7 @@ public class MAIN
 	
 		
 		/*************************************************************************
-		 * @author 阿杜
+		 * @author 掳垄露脜
 		 * @param args
 		 **************************************************************************/
 	public static void main(String[] args) 
@@ -525,16 +525,16 @@ public class MAIN
 
 			while(true)
 			{
-				System.out.println("1- 从文件读取数据! 2-手动写入数据!");
-				System.out.print("请输入选择:");
+				System.out.println("1- 麓脫脦脛录镁露脕脠隆脢媒戮脻! 2-脢脰露炉脨麓脠毛脢媒戮脻!");
+				System.out.print("脟毛脢盲脠毛脩隆脭帽:");
 				String choose=cin.nextLine();
 				if(choose.equals("1"))
 				{
 					/**
-					 * 从文件读入数据，并对其进行处理，最后将所有单词按文本中的循序拆分复制给obj1.words_original
+					 * 麓脫脦脛录镁露脕脠毛脢媒戮脻拢卢虏垄露脭脝盲陆酶脨脨麓娄脌铆拢卢脳卯潞贸陆芦脣霉脫脨碌楼麓脢掳麓脦脛卤戮脰脨碌脛脩颅脨貌虏冒路脰赂麓脰脝赂酶obj1.words_original
 					 */
 					str="";
-					System.out.print("请输入文件路径:");
+					System.out.print("脟毛脢盲脠毛脦脛录镁脗路戮露:");
 					
 					String StrFilename=cin.nextLine();
 					// StrFilename="input.txt";
@@ -549,10 +549,10 @@ public class MAIN
 						{
 							if(i==1)
 							{
-								str=str+temp;//第一行前面不加空格
+								str=str+temp;//碌脷脪禄脨脨脟掳脙忙虏禄录脫驴脮赂帽
 							}
 							else {
-								str=str+" "+temp;//每读一行加一个空格
+								str=str+" "+temp;//脙驴露脕脪禄脨脨录脫脪禄赂枚驴脮赂帽
 							}
 							i++;
 						}
@@ -565,7 +565,7 @@ public class MAIN
 				}
 				if(choose.equals("2"))
 				{
-					System.out.print("请输入文本:");
+					System.out.print("脟毛脢盲脠毛脦脛卤戮:");
 					str=cin.nextLine();
 					break;
 				}
@@ -579,22 +579,22 @@ public class MAIN
 		
 			
 			/**	
-			 * 初始化edge_edge  ;  edge_weight
-			* 生成图   ,将每条边转换成字符串对加入map edge_weight 中；其中key是边，value是权值（边出现的次数）,计算每条边出现的个数
-			* 同时 将每一条"A -> B"边按出现的次数存放 vector edge_edge中(是为了将边按循序读出来)
+			 * 鲁玫脢录禄炉edge_edge  ;  edge_weight
+			* 脡煤鲁脡脥录   ,陆芦脙驴脤玫卤脽脳陋禄禄鲁脡脳脰路没麓庐露脭录脫脠毛map edge_weight 脰脨拢禄脝盲脰脨key脢脟卤脽拢卢value脢脟脠篓脰碌拢篓卤脽鲁枚脧脰碌脛麓脦脢媒拢漏,录脝脣茫脙驴脤玫卤脽鲁枚脧脰碌脛赂枚脢媒
+			* 脥卢脢卤 陆芦脙驴脪禄脤玫"A -> B"卤脽掳麓鲁枚脧脰碌脛麓脦脢媒麓忙路脜 vector edge_edge脰脨(脢脟脦陋脕脣陆芦卤脽掳麓脩颅脨貌露脕鲁枚脌麓)
 			*/
 			for(int i=0;i<obj1.words_original.length-1;i++)
 			{
 				String temp=obj1.words_original[i]+" -> "+obj1.words_original[i+1];
 				
-				//第一次加入时权值为1
+				//碌脷脪禄麓脦录脫脠毛脢卤脠篓脰碌脦陋1
 				if(obj1.edge_weight.containsKey(temp)==false)
 				{
-					obj1.edge_edge.add(temp);//将新的一对边放进vector edge_dege后面(若重复出现则按照第一次插入的为准
+					obj1.edge_edge.add(temp);//陆芦脨脗碌脛脪禄露脭卤脽路脜陆酶vector edge_dege潞贸脙忙(脠么脰脴赂麓鲁枚脧脰脭貌掳麓脮脮碌脷脪禄麓脦虏氓脠毛碌脛脦陋脳录
 					obj1.edge_weight.put(temp, 1);
 				}
 				
-				//如果已经有了边和权值，则权值加一
+				//脠莽鹿没脪脩戮颅脫脨脕脣卤脽潞脥脠篓脰碌拢卢脭貌脠篓脰碌录脫脪禄
 				else {
 					int nutemp=obj1.edge_weight.get(temp);
 					nutemp+=1;
@@ -604,14 +604,14 @@ public class MAIN
 			
 			
 			/**	
-			 * 初始化 vertex_number   ; number_vertex
-			 * 从头到尾遍历原来的单词表，对每一个单词按照文本中出现的次数给予0....的值，若有重复出现的单词，则以第一次给予的值为准
-			 * 给每个定点赋给一个值，来表示每个定点在邻接矩阵的表示的数字
+			 * 鲁玫脢录禄炉 vertex_number   ; number_vertex
+			 * 麓脫脥路碌陆脦虏卤茅脌煤脭颅脌麓碌脛碌楼麓脢卤铆拢卢露脭脙驴脪禄赂枚碌楼麓脢掳麓脮脮脦脛卤戮脰脨鲁枚脧脰碌脛麓脦脢媒赂酶脫猫0....碌脛脰碌拢卢脠么脫脨脰脴赂麓鲁枚脧脰碌脛碌楼麓脢拢卢脭貌脪脭碌脷脪禄麓脦赂酶脫猫碌脛脰碌脦陋脳录
+			 * 赂酶脙驴赂枚露篓碌茫赂鲁赂酶脪禄赂枚脰碌拢卢脌麓卤铆脢戮脙驴赂枚露篓碌茫脭脷脕脷陆脫戮脴脮贸碌脛卤铆脢戮碌脛脢媒脳脰
 			 */
-			int number=-1;//每条边对应的数字，从零开始
+			int number=-1;//脙驴脤玫卤脽露脭脫娄碌脛脢媒脳脰拢卢麓脫脕茫驴陋脢录
 			for(int i=0;i<obj1.words_original.length;i++)
 			{
-				//vertex_number，number_vertex每个key和value相反
+				//vertex_number拢卢number_vertex脙驴赂枚key潞脥value脧脿路麓
 				if( obj1.vertex_number.containsKey(obj1.words_original[i])==false)
 				{
 					number+=1;
@@ -622,7 +622,7 @@ public class MAIN
 			}
 			obj1.vertex=obj1.number_vertex.size();
 	
-			//邻接矩阵初始化，全部为max_weight
+			//脕脷陆脫戮脴脮贸鲁玫脢录禄炉拢卢脠芦虏驴脦陋max_weight
 			obj1.edge_matrix=new int[obj1.vertex][obj1.vertex];
 			for(int i=0;i<obj1.vertex;i++)
 			{
@@ -632,14 +632,14 @@ public class MAIN
 				}
 			}
 			
-			// 创建有向图,创建邻接矩阵；
+			// 麓麓陆篓脫脨脧貌脥录,麓麓陆篓脕脷陆脫戮脴脮贸拢禄
 			for(int i=0;i<obj1.vertex;i++)
 			{
 				for(int j=0;j<obj1.vertex;j++)
 				{
 					String edgei=obj1.number_vertex.get(i);
 					String edgej=obj1.number_vertex.get(j);
-					//如果这两个边之间有路径
+					//脠莽鹿没脮芒脕陆赂枚卤脽脰庐录盲脫脨脗路戮露
 					if(obj1.edge_weight.containsKey(edgei+" -> "+edgej))
 					{
 						int weight=obj1.edge_weight.get(edgei+" -> "+edgej);
@@ -650,12 +650,12 @@ public class MAIN
 			
 				
 	
-			//展示有向图
+			//脮鹿脢戮脫脨脧貌脥录
 			obj1.showDirectedGraph();
 	
 			
-			// 查询桥词
-			System.out.println("******************* 查询两个单词之间的桥词******************* :");
+			// 虏茅脩炉脟脜麓脢
+			System.out.println("******************* 虏茅脩炉脕陆赂枚碌楼麓脢脰庐录盲碌脛脟脜麓脢******************* :");
 			System.out.print("please input word 1 :");
 			String word1=cin.nextLine();
 			System.out.print("please input word 2 :");
@@ -664,31 +664,31 @@ public class MAIN
 			System.out.println(BridgeWords);
 			
 	
-			//根据桥词形成新新文本
-			System.out.println(" \n******************* 根据桥词形成新新文本*******************  :");
-			System.out.print("请输入文本 :");
+			//赂霉戮脻脟脜麓脢脨脦鲁脡脨脗脨脗脦脛卤戮
+			System.out.println(" \n******************* 赂霉戮脻脟脜麓脢脨脦鲁脡脨脗脨脗脦脛卤戮*******************  :");
+			System.out.print("脟毛脢盲脠毛脦脛卤戮 :");
 			String NewTex=cin.nextLine();
 			System.out.println(obj1.generateNewText(NewTex));
 			
 		
-	  		//求最短路径
-			System.out.println(" \n ******************* 两个单词之间的最短路径:******************* ");
+	  		//脟贸脳卯露脤脗路戮露
+			System.out.println(" \n ******************* 脕陆赂枚碌楼麓脢脰庐录盲碌脛脳卯露脤脗路戮露:******************* ");
 			System.out.print("please input word 1 :");
 			 word1=cin.nextLine();
 			System.out.print("please input word 2 :");
 			 word2=cin.nextLine();
 	  		 String minpass=obj1.calcShortestPath(word1, word2);
-			 System.out.println("两点间的最短路径是： "+minpass);
+			 System.out.println("脕陆碌茫录盲碌脛脳卯露脤脗路戮露脢脟拢潞 "+minpass);
 			 
-			 //一个点到所有点的最短路径
-			 System.out.println(" \n ******************* 一个单词到所有单词之间的最短路径:******************* ");
+			 //脪禄赂枚碌茫碌陆脣霉脫脨碌茫碌脛脳卯露脤脗路戮露
+			 System.out.println(" \n ******************* 脪禄赂枚碌楼麓脢碌陆脣霉脫脨碌楼麓脢脰庐录盲碌脛脳卯露脤脗路戮露:******************* ");
 			 obj1.gv_1.addln(obj1.gv_1.start_graph());	
-			 System.out.print("请输入一个单词:");
+			 System.out.print("脟毛脢盲脠毛脪禄赂枚碌楼麓脢:");
 			 String word3=cin.nextLine();
 			 obj1.calcShortestPath(word3);
 			
-			//随机游走
-			 System.out.println(" \n *******************随机游走*******************");
+			//脣忙禄煤脫脦脳脽
+			 System.out.println(" \n *******************脣忙禄煤脫脦脳脽*******************");
 	        String ResutlRanWalk=obj1.randomWalk();
 	        System.out.print(ResutlRanWalk);
     		cin.close();	
@@ -712,7 +712,7 @@ public class MAIN
 		
 	
 	/**
-	 * showDirectedGraph();的辅助函数，记录路径
+	 * showDirectedGraph();碌脛赂篓脰煤潞炉脢媒拢卢录脟脗录脗路戮露
 	 */
 	public void print_minpass(int p[][],int i,int j,Vector<String> min_pass_edge)
 	{
@@ -740,10 +740,10 @@ public class MAIN
 				{
 					if(i==1)
 					{
-						strcolor=strcolor+temp;//第一行前面不加空格
+						strcolor=strcolor+temp;//碌脷脪禄脨脨脟掳脙忙虏禄录脫驴脮赂帽
 					}
 					else {
-						strcolor=strcolor+" "+temp;//每读一行加一个空格
+						strcolor=strcolor+" "+temp;//脙驴露脕脪禄脨脨录脫脪禄赂枚驴脮赂帽
 					}
 					i++;
 				}
@@ -773,8 +773,8 @@ public class MAIN
 			 
 			    for(int k=0;k<this.edge_edge.size();k++)
 				{			
-					String add_edge=this.edge_edge.elementAt(k);//一对边
-					String strweight=this.edge_weight.get(add_edge).toString();//边的权值
+					String add_edge=this.edge_edge.elementAt(k);//脪禄露脭卤脽
+					String strweight=this.edge_weight.get(add_edge).toString();//卤脽碌脛脠篓脰碌
 					this.gv_1.add(add_edge+"[ label="+strweight+"]"+";");
 				}
 			    
@@ -796,14 +796,14 @@ public class MAIN
 		/************************************************************************
 		 * @param word1
 		 * @param word2
-		 * @return 两个点之间的最短路径
+		 * @return 脕陆赂枚碌茫脰庐录盲碌脛脳卯露脤脗路戮露
 		 ***********************************************************************/
 		public void calcShortestPath(String word1, String word2,String cl)
 		{
-			Vector<String> min_pass_edge=new Vector<>();//记录两点间的路径（包括这俩个点）			
-			//String resultstring="";//返回值
+			Vector<String> min_pass_edge=new Vector<>();//录脟脗录脕陆碌茫录盲碌脛脗路戮露拢篓掳眉脌篓脮芒脕漏赂枚碌茫拢漏			
+			//String resultstring="";//路碌禄脴脰碌
 			int[][] D=new int[this.vertex][this.vertex];
-			int[][] P=new int[this.vertex][this.vertex];//表示编号为i,j边之间的最短路径
+			int[][] P=new int[this.vertex][this.vertex];//卤铆脢戮卤脿潞脜脦陋i,j卤脽脰庐录盲碌脛脳卯露脤脗路戮露
 			for(int i=0;i<this.vertex;i++)
 			{
 				for(int j=0;j<this.vertex;j++)
@@ -837,12 +837,12 @@ public class MAIN
 	        }
 			min_pass_edge.add(word2);
 			 
-			 //将亮点间的最短路径经过的边和权值加入min_edge_weight中,
+			 //陆芦脕脕碌茫录盲碌脛脳卯露脤脗路戮露戮颅鹿媒碌脛卤脽潞脥脠篓脰碌录脫脠毛min_edge_weight脰脨,
 			 for(int k=0;k<min_pass_edge.size()-1;k++)
 			 {
 				 String frist=min_pass_edge.get(k);
 				 String next=min_pass_edge.get(k+1);
-				 String tempstring=frist+" -> "+next;//边
+				 String tempstring=frist+" -> "+next;//卤脽
 	
 				 String style=tempstring+"[ color="+cl+"]"+";";
 				 this.gv_1.add(style); 
